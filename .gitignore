@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 audio_cache/
 wiki_cache/
+analytics_data.json

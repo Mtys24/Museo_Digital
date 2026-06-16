@@ -29,7 +29,7 @@ FIGURES = {
         ]
     },
     "Leonardo da Vinci": {
-        "emoji": "\ud83c\udfa8",
+        "emoji": "\U0001F3A8",
         "name": "Leonardo da Vinci",
         "era": "1452 \u2013 1519",
         "short_bio": "Pol\u00edmata del Renacimiento: pintor, anatomista, arquitecto, ingeniero, inventor, escultor y cient\u00edfico.",

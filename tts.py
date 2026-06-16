@@ -5,7 +5,7 @@ from pathlib import Path
 
 import edge_tts
 
-AUDIO_DIR = Path("audio_cache")
+AUDIO_DIR = Path("audio_cache").resolve()
 AUDIO_DIR.mkdir(exist_ok=True)
 
 
