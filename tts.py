@@ -34,6 +34,10 @@ def generate_audio(text: str, voice_name: str) -> str:
         communicate = edge_tts.Communicate(text, voice_name)
         await communicate.save(str(filepath))
 
-    asyncio.run(_generate())
+    loop = asyncio.new_event_loop()
+    try:
+        loop.run_until_complete(_generate())
+    finally:
+        loop.close()
     _clean_old_files()
     return str(filepath)

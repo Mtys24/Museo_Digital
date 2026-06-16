@@ -37,6 +37,54 @@ body.theme-curie {
     --gold-light: #34D399;
     --gold-glow: rgba(5,150,105,0.15);
 }
+body.theme-turing {
+    --gold: #2563EB;
+    --gold-rgb: 37,99,235;
+    --gold-light: #60A5FA;
+    --gold-glow: rgba(37,99,235,0.15);
+}
+body.theme-lovelace {
+    --gold: #7C3AED;
+    --gold-rgb: 124,58,237;
+    --gold-light: #A78BFA;
+    --gold-glow: rgba(124,58,237,0.15);
+}
+body.theme-cleopatra {
+    --gold: #D97706;
+    --gold-rgb: 217,119,6;
+    --gold-light: #FBBF24;
+    --gold-glow: rgba(217,119,6,0.15);
+}
+body.theme-alexander {
+    --gold: #059669;
+    --gold-rgb: 5,150,105;
+    --gold-light: #34D399;
+    --gold-glow: rgba(5,150,105,0.15);
+}
+body.theme-caesar {
+    --gold: #DC2626;
+    --gold-rgb: 220,38,38;
+    --gold-light: #F87171;
+    --gold-glow: rgba(220,38,38,0.15);
+}
+body.theme-genghis {
+    --gold: #7C3AED;
+    --gold-rgb: 124,58,237;
+    --gold-light: #A78BFA;
+    --gold-glow: rgba(124,58,237,0.15);
+}
+body.theme-babbage {
+    --gold: #2563EB;
+    --gold-rgb: 37,99,235;
+    --gold-light: #60A5FA;
+    --gold-glow: rgba(37,99,235,0.15);
+}
+body.theme-hopper {
+    --gold: #0891B2;
+    --gold-rgb: 8,145,178;
+    --gold-light: #22D3EE;
+    --gold-glow: rgba(8,145,178,0.15);
+}
 
 /* ---- RESET & BASE ---- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -57,13 +105,13 @@ body.theme-curie {
 /* ---- HEADER ---- */
 #header {
     text-align: center;
-    padding: 2rem 0 1.5rem 0;
+    padding: 1.2rem 0 1rem 0;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 #header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.4rem;
+    font-size: 1.9rem;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -84,15 +132,15 @@ body.theme-curie {
 .character-grid {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    margin-bottom: 1rem;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
 }
 
 .character-card {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    padding: 0.7rem 0.8rem;
+    gap: 0.6rem;
+    padding: 0.45rem 0.65rem;
     border-radius: var(--radius);
     border: 1px solid var(--border);
     background: var(--bg-card);
@@ -128,8 +176,8 @@ body.theme-curie {
 }
 
 .character-card img {
-    width: 56px;
-    height: 56px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--border);
@@ -143,7 +191,7 @@ body.theme-curie {
 
 .character-card-info { flex: 1; min-width: 0; }
 .character-card-name {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--text);
     white-space: nowrap;
@@ -151,16 +199,16 @@ body.theme-curie {
     text-overflow: ellipsis;
 }
 .character-card-era {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-muted);
-    margin-top: 0.1rem;
+    margin-top: 0.05rem;
 }
 
 /* ---- BIO SECTION ---- */
 .bio-section {
-    padding: 1rem 0;
+    padding: 0.65rem 0;
     border-top: 1px solid var(--border);
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
 }
 
 .bio-title-container {
@@ -169,18 +217,18 @@ body.theme-curie {
     gap: 0.6rem;
     margin-bottom: 0.5rem;
 }
-.bio-emoji { font-size: 1.4rem; }
+.bio-emoji { font-size: 1.1rem; }
 .bio-name {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--text);
 }
 .bio-text {
-    font-size: 0.85rem;
-    line-height: 1.6;
+    font-size: 0.8rem;
+    line-height: 1.5;
     color: var(--text-muted);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 /* ---- TIMELINE ---- */
@@ -202,7 +250,7 @@ body.theme-curie {
 }
 .timeline-item {
     position: relative;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.6rem;
     opacity: 0;
     transform: translateY(8px);
     animation: fadeInUp 0.35s forwards;
@@ -340,10 +388,78 @@ body.theme-curie {
     background: rgba(var(--gold-rgb), 0.05) !important;
 }
 
+/* ---- SUGGESTION CHIPS ---- */
+.suggest-row {
+    flex-wrap: wrap !important;
+    gap: 0.4rem !important;
+}
+.suggest-btn button {
+    background: rgba(var(--gold-rgb), 0.06) !important;
+    border: 1px solid rgba(var(--gold-rgb), 0.18) !important;
+    border-radius: 20px !important;
+    color: var(--text-muted) !important;
+    font-size: 0.78rem !important;
+    padding: 0.3rem 0.9rem !important;
+    transition: all var(--transition) !important;
+    white-space: nowrap !important;
+    font-weight: 400 !important;
+    box-shadow: none !important;
+}
+.suggest-btn button:hover {
+    background: rgba(var(--gold-rgb), 0.14) !important;
+    border-color: var(--gold) !important;
+    color: var(--text) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px var(--gold-glow) !important;
+}
+
+/* ---- VOICE INPUT BUTTON ---- */
+.voice-input-btn {
+    position: absolute !important;
+    right: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-size: 1.1rem !important;
+    padding: 4px 6px !important;
+    border-radius: 6px !important;
+    transition: all var(--transition) !important;
+    z-index: 10 !important;
+    opacity: 0.55 !important;
+    line-height: 1 !important;
+}
+.voice-input-btn:hover {
+    opacity: 1 !important;
+    transform: translateY(-50%) scale(1.15) !important;
+    background: rgba(var(--gold-rgb), 0.1) !important;
+}
+.voice-input-btn.recording {
+    opacity: 1 !important;
+    animation: micPulse 1s ease-in-out infinite !important;
+}
+@keyframes micPulse {
+    0%, 100% { transform: translateY(-50%) scale(1); filter: none; }
+    50% { transform: translateY(-50%) scale(1.2); filter: drop-shadow(0 0 6px rgba(239,68,68,0.6)); }
+}
+
 /* ---- ANIMATIONS ---- */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Typing cursor on last streaming message */
+.gradio-container .chatbot .message.bot:last-child.generating::after {
+    content: '▋';
+    display: inline-block;
+    color: var(--gold-light);
+    animation: blink 0.7s step-end infinite;
+    margin-left: 2px;
+}
+@keyframes blink {
+    50% { opacity: 0; }
 }
 
 /* ---- SCROLLBAR ---- */

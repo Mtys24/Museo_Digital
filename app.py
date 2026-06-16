@@ -1,6 +1,9 @@
 import os
 import time
 import gradio as gr
+import uvicorn
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from huggingface_hub import InferenceClient
 from dotenv import load_dotenv
 
@@ -38,10 +41,9 @@ def build_character_cards(active_name):
     for name, fig in FIGURES.items():
         cls = " active" if name == active_name else ""
         safe = name.replace("'", "\\'")
-        avatar_path = os.path.join(ASSETS_DIR, fig["avatar"]).replace("\\", "/")
         cards += f"""
         <div class="character-card{cls}" data-name="{safe}" onclick="selectCharacter('{safe}')">
-            <img src="/file={avatar_path}" alt="{name}">
+            <img src="/assets/{fig['avatar']}" alt="{name}">
             <div class="character-card-info">
                 <div class="character-card-name">{fig['emoji']} {name}</div>
                 <div class="character-card-era">{fig['era']}</div>
@@ -190,7 +192,7 @@ with gr.Blocks(title="Museo Digital") as demo:
             chatbot = gr.Chatbot(height=420)
             audio_player = gr.Audio(
                 label="Escuchar respuesta",
-                autoplay=False,
+                autoplay=True,
                 visible=True,
             )
             msg = gr.Textbox(
@@ -198,10 +200,10 @@ with gr.Blocks(title="Museo Digital") as demo:
                 show_label=False,
                 container=False,
             )
-            with gr.Row():
+            with gr.Row(elem_classes=["suggest-row"]):
                 suggest_btns = []
                 for q in SUGGESTED_QUESTIONS:
-                    btn = gr.Button(q, size="sm")
+                    btn = gr.Button(q, size="sm", elem_classes=["suggest-btn"])
                     suggest_btns.append(btn)
             with gr.Row():
                 clear_btn = gr.Button("Limpiar", variant="secondary")
@@ -234,13 +236,13 @@ with gr.Blocks(title="Museo Digital") as demo:
         inputs=[msg, histories_state, figure_state, chatbot],
         outputs=[chatbot, audio_player, histories_state],
         queue=True,
-    )
+    ).then(fn=lambda: "", outputs=[msg])
     msg.submit(
         fn=on_submit,
         inputs=[msg, histories_state, figure_state, chatbot],
         outputs=[chatbot, audio_player, histories_state],
         queue=True,
-    )
+    ).then(fn=lambda: "", outputs=[msg])
 
     clear_btn.click(
         fn=on_clear,
@@ -255,12 +257,16 @@ with gr.Blocks(title="Museo Digital") as demo:
     )
 
 if __name__ == "__main__":
-    demo.launch(
-        debug=False,
-        server_name="127.0.0.1",
-        server_port=7861,
+    fastapi_app = FastAPI()
+    fastapi_app.mount("/assets", StaticFiles(directory=ASSETS_DIR), name="assets")
+    fastapi_app.mount("/audio", StaticFiles(directory=str(AUDIO_DIR)), name="audio")
+    app = gr.mount_gradio_app(
+        fastapi_app,
+        demo,
+        path="/",
         theme=gr.themes.Base(),
         css=CUSTOM_CSS,
         js=JS_CODE,
         allowed_paths=[ASSETS_DIR, str(AUDIO_DIR)],
     )
+    uvicorn.run(app, host="127.0.0.1", port=7861)
